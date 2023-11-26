@@ -12,14 +12,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Read engines from package.json 
+      - name: Read engines from package.json & Set node & npm version & build
         uses: skjnldsv/read-package-engines-version-actions@v2
         id: engines-versions
 
-      - name: Set node & npm version
       - uses: actions/setup-node@v4
         with:
-          node-version: {{ steps.engines-versions.outputs.nodeVersion }}
+          node-version: ${{ steps.engines-versions.outputs.nodeVersion }}
 
       - run: npm -v && node -v
       - run: npm ci && npm run build
