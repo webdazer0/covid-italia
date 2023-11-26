@@ -1,0 +1,15 @@
+.custom-select {
+    color: var(--isWhite);
+    background: var(--arrow-selector);
+    border-radius: .25rem;
+    outline: none;
+}
+/* body::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: royalblue;
+    border-radius: 30px;
+} */

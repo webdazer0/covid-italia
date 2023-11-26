@@ -1,25 +1,38 @@
 import React from "react";
-import logo from "./logo.svg";
+import "../node_modules/bootswatch/dist/lux/bootstrap.min.css";
 import "./App.css";
+import Selector from "./component/Selector";
+import CardList from "./component/CardList";
+import Switch from "./component/Switch";
+import Layout from "./component/layout/";
+import Sidebar from "./component/Sidebar";
+import Main from "./component/Main";
+import useDarkMode from "./hooks/useDarkMode";
+import useIsoCountry from "./hooks/useIsoCountry";
 
 function App() {
+  const { checked, setChecked, setDarkMode, mainClass } = useDarkMode();
+  const { iso, getIsoCountry } = useIsoCountry();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className={mainClass}>
+      <Layout>
+        <div className="container">
+          <div className="row">
+            <Switch
+              checked={checked}
+              setChecked={setChecked}
+              setDarkMode={setDarkMode}
+            />
+            <Sidebar col="4" />
+            <Main col="8">
+              <Selector getIsoCountry={getIsoCountry} />
+              <CardList byName={iso} />
+            </Main>
+          </div>
+        </div>
+      </Layout>
+    </main>
   );
 }
 
