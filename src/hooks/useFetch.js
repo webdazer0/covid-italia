@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
+import { COVID_API } from "../config/data";
 
 const useFetch = () => {
-  const URI_API =
-    "https://master-covid-19-api-laeyoung.endpoint.ainize.ai/jhu-edu/latest";
-
   const [countryList, setCountryList] = useState([]);
   const [countryListIso, setCountryListIso] = useState([]);
   const [allDeaths, setAllDeaths] = useState(0);
@@ -11,7 +9,7 @@ const useFetch = () => {
   const [allRecovered, setAllRecovered] = useState(0);
 
   const all = async () => {
-    const res = await fetch(URI_API);
+    const res = await fetch(COVID_API);
     const data = await res.json();
     const dataOrderByDeaths = data
       .filter((elem) => elem.confirmed >= 0)
@@ -31,12 +29,8 @@ const useFetch = () => {
       .filter((elem) => elem.recovered >= 0)
       .reduce((total, elem) => total + elem.recovered, 0);
 
-    // console.log("allDeaths");
-    // console.log(allDeaths);
-    // console.log(allConfirmed);
-    // console.log(allRecovered);
+    // deaths/confirmed/recovered
     // console.log("TOTAL MUERTES: ", allDeaths);
-    // setCountryList(data);
     setCountryList(dataOrderByDeaths);
     setCountryListIso(dataIso);
     setAllDeaths(totalDeaths);

@@ -3,6 +3,7 @@ import { format } from "timeago.js";
 import "../lib/addLang"; // Aggiunge lingue a timeago.js: Italiano & Spagnolo
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
+import { IMAGE_API, IMAGE_FALLBACK } from "../config/data";
 
 function Card({
   countryregion,
@@ -14,8 +15,8 @@ function Card({
   countrycode,
 }) {
   const urlFlag = countrycode
-    ? `https://restcountries.eu/data/${countrycode.iso3.toLowerCase()}.svg`
-    : `https://via.placeholder.com/27x18`;
+    ? `${IMAGE_API}${countrycode.iso3.toLowerCase()}.svg`
+    : IMAGE_FALLBACK;
   const codice =
     deaths > 50000 ? "urgency" : deaths > 5000 ? "dangermax" : "notnormal";
 

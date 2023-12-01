@@ -1,5 +1,6 @@
 import React from "react";
 import "./header.css";
+import { SUPPORT_LINK } from "../../config/data";
 
 function Header() {
   return (
@@ -40,7 +41,9 @@ function Header() {
           </div>
           <a
             className="nav-link btn-support"
-            href="https://paypal.me/miguelcruzad0"
+            href={SUPPORT_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Offrimi una{" "}
             <span className="birra" role="img" aria-label="birra">
