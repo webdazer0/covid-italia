@@ -15,7 +15,7 @@ function Card({
   countrycode,
 }) {
   const urlFlag = countrycode
-    ? `${IMAGE_API}${countrycode.iso3.toLowerCase()}.svg`
+    ? `${IMAGE_API}/${countrycode.iso2.toLowerCase()}.svg`
     : IMAGE_FALLBACK;
   const codice =
     deaths > 50000 ? "urgency" : deaths > 5000 ? "dangermax" : "notnormal";
