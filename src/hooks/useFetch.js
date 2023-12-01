@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { COVID_API } from "../config/data";
+import * as covidService from "../services/covidService";
 
 const useFetch = () => {
   const [countryList, setCountryList] = useState([]);
@@ -9,8 +9,8 @@ const useFetch = () => {
   const [allRecovered, setAllRecovered] = useState(0);
 
   const all = async () => {
-    const res = await fetch(COVID_API);
-    const data = await res.json();
+    const data = await covidService.getStatusCountries();
+
     const dataOrderByDeaths = data
       .filter((elem) => elem.confirmed >= 0)
       .sort((a, b) => a.confirmed - b.confirmed)
@@ -30,7 +30,6 @@ const useFetch = () => {
       .reduce((total, elem) => total + elem.recovered, 0);
 
     // deaths/confirmed/recovered
-    // console.log("TOTAL MUERTES: ", allDeaths);
     setCountryList(dataOrderByDeaths);
     setCountryListIso(dataIso);
     setAllDeaths(totalDeaths);
