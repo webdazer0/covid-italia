@@ -28,9 +28,6 @@ function CardList({ byName }) {
     });
   }
 
-  // console.log({ countryList });
-  console.log({ countryListASC });
-
   return <>{byName.length !== 0 ? getCountry : getCountries}</>;
 }
 
