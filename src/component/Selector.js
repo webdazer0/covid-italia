@@ -1,11 +1,11 @@
 import React from "react";
 import "./selector.css";
-import useFetch from "../hooks/useFetch";
+import useCountries from "../hooks/useCountries";
 
 function Selector({ getIsoCountry }) {
-  const { countryListIso } = useFetch();
+  const { countryListByISO } = useCountries();
 
-  const countrySelect = countryListIso.map((elem) => {
+  const countrySelect = countryListByISO.map((elem) => {
     return (
       <option
         key={elem.countryregion + elem.provincestate}

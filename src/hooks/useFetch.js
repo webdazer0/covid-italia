@@ -8,7 +8,7 @@ const useFetch = () => {
   const [allConfirmed, setAllConfirmed] = useState(0);
   const [allRecovered, setAllRecovered] = useState(0);
 
-  const all = async () => {
+  const loadCountries = async () => {
     const data = await covidService.getStatusCountries();
 
     const dataOrderByDeaths = data
@@ -29,7 +29,6 @@ const useFetch = () => {
       .filter((elem) => elem.recovered >= 0)
       .reduce((total, elem) => total + elem.recovered, 0);
 
-    // deaths/confirmed/recovered
     setCountryList(dataOrderByDeaths);
     setCountryListIso(dataIso);
     setAllDeaths(totalDeaths);
@@ -38,7 +37,7 @@ const useFetch = () => {
   };
 
   useEffect(() => {
-    all();
+    loadCountries();
   }, []);
 
   return { countryList, countryListIso, allDeaths, allConfirmed, allRecovered };

@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "./Card";
-import useFetch from "../hooks/useFetch";
+import useCountries from "../hooks/useCountries";
 
 // { countryregion, deaths, confirmed, recovered }
 
 function CardList({ byName }) {
-  const { countryList, countryListIso } = useFetch();
+  const { countryList, countryListByISO } = useCountries();
 
   const getCountries = countryList.map((elem) => {
     return <Card key={elem.countryregion + elem.provincestate} {...elem} />;
@@ -18,7 +18,7 @@ function CardList({ byName }) {
   let getCountry = [];
 
   if (byName.length > 0) {
-    const countryListByName = countryListIso.filter(
+    const countryListByName = countryListByISO.filter(
       (elem) => elem.countrycode.iso3 === byName
     );
     // console.log({ byName });

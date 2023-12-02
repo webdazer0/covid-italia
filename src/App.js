@@ -9,10 +9,13 @@ import Sidebar from "./component/Sidebar";
 import Main from "./component/Main";
 import useDarkMode from "./hooks/useDarkMode";
 import useIsoCountry from "./hooks/useIsoCountry";
+import useApp from "./hooks/useApp";
 
 function App() {
   const { checked, setChecked, setDarkMode, mainClass } = useDarkMode();
   const { iso, getIsoCountry } = useIsoCountry();
+  // Load initial data
+  useApp();
 
   return (
     <main className={mainClass}>

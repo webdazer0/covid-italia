@@ -1,10 +1,10 @@
 import React from "react";
-import useFetch from "../hooks/useFetch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFlag } from "@fortawesome/free-solid-svg-icons";
+import useCountries from "../hooks/useCountries";
 
 function Sidebar({ col }) {
-  const { allDeaths, allConfirmed, allRecovered } = useFetch();
+  const { info } = useCountries();
   const classColumn = `col-md-${col} d-none d-md-block`;
   return (
     <div className={classColumn}>
@@ -20,18 +20,18 @@ function Sidebar({ col }) {
           <p className="lead mb-5">
             <span className="text-danger h1">
               {" "}
-              <FontAwesomeIcon icon={faFlag} /> {allDeaths}
+              <FontAwesomeIcon icon={faFlag} /> {info.deaths}
             </span>
             <br />
             <span className="h5">Morti</span>
           </p>
           <p className="lead mb-5">
-            <span className="text-warning h1">{allConfirmed}</span>
+            <span className="text-warning h1">{info.confirmed}</span>
             <br />
             <span className="h5">Casi confermati</span>
           </p>
           <p className="lead mb-5">
-            <span className="text-success h1">{allRecovered}</span>
+            <span className="text-success h1">{info.recovered}</span>
             <br />
             <span className="h5">Casi recoverati</span>
           </p>
