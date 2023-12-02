@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.css";
-import { SUPPORT_LINK } from "../../config/data";
+import { SUPPORT_LINK } from "../../config/constants";
 
 function Header() {
   return (

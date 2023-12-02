@@ -1,4 +1,5 @@
-import { COVID_API } from "../config/data";
+import { COVID_API } from "../config/constants";
+import { logger } from "../utils/logger";
 import { fakeList } from "./fakeData";
 
 export const getStatusCountries = async () => {
@@ -7,7 +8,7 @@ export const getStatusCountries = async () => {
     validationError(response);
     return response.json();
   } catch (error) {
-    console.log({ API_ERROR: error.message });
+    logger({ API_ERROR: error.message });
     return fakeList;
   }
 };

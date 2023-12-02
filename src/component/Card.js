@@ -1,9 +1,9 @@
 import React from "react";
 import { format } from "timeago.js";
-import "../lib/addLang"; // Aggiunge lingue a timeago.js: Italiano & Spagnolo
+import "../utils/addLang"; // Aggiunge lingue a timeago.js: Italiano & Spagnolo
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
-import { IMAGE_API, IMAGE_FALLBACK } from "../config/data";
+import { IMAGE_API, IMAGE_FALLBACK } from "../config/constants";
 
 function Card({
   countryregion,

@@ -1,7 +1,20 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectCountry,
+  selectCountryISO,
+  updateISO,
+} from "../redux/reducers/country.slice";
 
 const useCountries = () => {
-  const countries = useSelector((state) => state.country.data);
+  const countries = useSelector(selectCountry);
+  const iso = useSelector(selectCountryISO);
+
+  const dispatch = useDispatch();
+
+  const onISOChanged = (data) => {
+    dispatch(updateISO(data));
+    //
+  };
 
   // dataOrderByDeaths
   const countryList = countries
@@ -27,6 +40,8 @@ const useCountries = () => {
   return {
     countryList,
     countryListByISO,
+    onISOChanged,
+    byName: iso,
     // deaths/confirmed/recovered
     info: {
       deaths: totalDeaths,

@@ -1,23 +1,17 @@
-import React, { useRef } from "react";
+import React from "react";
 import "./switch.css";
+import useDarkMode from "../hooks/useDarkMode";
 
-function Switch({ checked, setChecked, setDarkMode }) {
-  const ref = useRef(null);
-
-  const changeColor = () => {
-    setDarkMode(ref.current.checked);
-    setChecked(ref.current.checked);
-    console.log(ref.current.checked);
-  };
+function Switch() {
+  const { darkTheme, onChangeTheme } = useDarkMode();
 
   return (
     <div className="col-md-12">
       <div className="dark-mode-content">
         <div className="dark-mode">
           <input
-            ref={ref}
-            checked={checked}
-            onChange={changeColor}
+            checked={darkTheme}
+            onChange={onChangeTheme}
             type="checkbox"
             className="checkbox"
             id="checkbox"

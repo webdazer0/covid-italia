@@ -1,11 +1,11 @@
 import React from "react";
 import Card from "./Card";
 import useCountries from "../hooks/useCountries";
+import { logger } from "../utils/logger";
 
 // { countryregion, deaths, confirmed, recovered }
-
-function CardList({ byName }) {
-  const { countryList, countryListByISO } = useCountries();
+function CardList() {
+  const { countryList, countryListByISO, byName } = useCountries();
 
   const getCountries = countryList.map((elem) => {
     return <Card key={elem.countryregion + elem.provincestate} {...elem} />;
@@ -21,8 +21,8 @@ function CardList({ byName }) {
     const countryListByName = countryListByISO.filter(
       (elem) => elem.countrycode.iso3 === byName
     );
-    // console.log({ byName });
-    // console.log({ countryListByName });
+    logger({ byName });
+    logger({ countryListByName });
     getCountry = countryListByName.map((elem) => {
       return <Card key={elem.countryregion + elem.provincestate} {...elem} />;
     });

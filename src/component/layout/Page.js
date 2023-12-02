@@ -2,14 +2,16 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 
-const Layout = ({ children }) => {
+const Page = ({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="container">
+        <div className="row">{children}</div>
+      </div>
       <Footer />
     </>
   );
 };
 
-export default Layout;
+export default Page;

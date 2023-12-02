@@ -1,20 +1,27 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import * as covidService from "../../services/covidService";
+import { AppName } from "../contants";
 
-const COUNTRY_DATA_EMPTY_STATE = {
+const countryEmptyState = {
   data: [], // data countries
+  iso: "",
 };
 
-export const getCountries = createAsyncThunk("countries/getAll", async () => {
-  return await covidService.getStatusCountries();
-});
+export const getCountries = createAsyncThunk(
+  `${AppName.country}/loadData`,
+  async () => {
+    return await covidService.getStatusCountries();
+  }
+);
 
 export const countrySlice = createSlice({
-  name: "countries",
-  initialState: COUNTRY_DATA_EMPTY_STATE,
+  name: AppName.country,
+  initialState: countryEmptyState,
   reducers: {
-    resetCountry: () => COUNTRY_DATA_EMPTY_STATE,
+    resetCountry: () => countryEmptyState,
+    updateISO: (state, action) => ({ ...state, iso: action.payload }),
   },
+
   extraReducers: {
     [getCountries.fulfilled]: (state, action) => ({
       ...state,
@@ -24,6 +31,11 @@ export const countrySlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { resetCountry } = countrySlice.actions;
+export const { resetCountry, updateISO } = countrySlice.actions;
+
+// The function below is called a selector and allows us to select country data
+// from state. For example: `useSelector((state) => state.country.data)`
+export const selectCountry = (state) => state.country.data;
+export const selectCountryISO = (state) => state.country.iso;
 
 export default countrySlice.reducer;

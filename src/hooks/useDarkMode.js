@@ -1,17 +1,22 @@
-import { useState, useEffect } from "react";
+import { selectDarkTheme, toggleTheme } from "../redux/reducers/config.slice";
+import { useDispatch, useSelector } from "react-redux";
 
 const useDarkMode = () => {
-  // DARK MODE INIZIO
-  const [checked, setChecked] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-  const mainClass = darkMode ? "is-dark-mode" : "is-light-mode";
+  const darkTheme = useSelector(selectDarkTheme);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setDarkMode(true);
-    setChecked(true);
-  }, []);
-  // DARK MODE FINE
-  return { checked, setChecked, setDarkMode, mainClass };
+  const onChangeTheme = () => {
+    dispatch(toggleTheme());
+    //
+  };
+
+  const mainClass = darkTheme ? "is-dark-mode" : "is-light-mode";
+
+  return {
+    mainClass,
+    darkTheme,
+    onChangeTheme,
+  };
 };
 
 export default useDarkMode;

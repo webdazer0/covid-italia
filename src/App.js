@@ -4,38 +4,26 @@ import "./App.css";
 import Selector from "./component/Selector";
 import CardList from "./component/CardList";
 import Switch from "./component/Switch";
-import Layout from "./component/layout/";
+import Page from "./component/layout/Page";
 import Sidebar from "./component/Sidebar";
 import Main from "./component/Main";
-import useDarkMode from "./hooks/useDarkMode";
-import useIsoCountry from "./hooks/useIsoCountry";
 import useApp from "./hooks/useApp";
+import AppLayout from "./component/AppLayout";
 
 function App() {
-  const { checked, setChecked, setDarkMode, mainClass } = useDarkMode();
-  const { iso, getIsoCountry } = useIsoCountry();
   // Load initial data
   useApp();
-
   return (
-    <main className={mainClass}>
-      <Layout>
-        <div className="container">
-          <div className="row">
-            <Switch
-              checked={checked}
-              setChecked={setChecked}
-              setDarkMode={setDarkMode}
-            />
-            <Sidebar col="4" />
-            <Main col="8">
-              <Selector getIsoCountry={getIsoCountry} />
-              <CardList byName={iso} />
-            </Main>
-          </div>
-        </div>
-      </Layout>
-    </main>
+    <AppLayout>
+      <Page>
+        <Switch />
+        <Sidebar col="4" />
+        <Main col="8">
+          <Selector />
+          <CardList />
+        </Main>
+      </Page>
+    </AppLayout>
   );
 }
 
