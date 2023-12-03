@@ -38,17 +38,17 @@ h4,
   right: 0;
   top: 0;
 }
-.card.dangermax:before {
-  background-color: red;
+.card.urgency-low:before {
+  background-color: var(--urgency-low);
 }
-.card.notnormal:before {
-  background-color: var(--notnormal2);
+.card.urgency-medium:before {
+  background-color: var(--danger);
 }
-.card.urgency:before {
+.card.urgency-high:before {
   background: linear-gradient(
     to right,
-    var(--urgency-1) 0%,
-    var(--urgency-2) 100%
+    var(--urgency-high-start) 0%,
+    var(--urgency-high-end) 100%
   );
 }
 

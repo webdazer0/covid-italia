@@ -1,7 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFlag } from "@fortawesome/free-solid-svg-icons";
 import useCountries from "../hooks/useCountries";
+import { FlagIcon } from "./icons/icons";
 
 function Sidebar({ col }) {
   const { info } = useCountries();
@@ -19,21 +18,19 @@ function Sidebar({ col }) {
 
           <p className="lead mb-5">
             <span className="text-danger h1">
-              {" "}
-              <FontAwesomeIcon icon={faFlag} /> {info.deaths}
+              <FlagIcon /> {info.deaths}
             </span>
-            <br />
-            <span className="h5">Morti</span>
+            <span className="h5 d-block">Morti</span>
           </p>
           <p className="lead mb-5">
             <span className="text-warning h1">{info.confirmed}</span>
             <br />
-            <span className="h5">Casi confermati</span>
+            <span className="h5 d-block">Casi confermati</span>
           </p>
           <p className="lead mb-5">
             <span className="text-success h1">{info.recovered}</span>
             <br />
-            <span className="h5">Casi recoverati</span>
+            <span className="h5 d-block">Casi recoverati</span>
           </p>
           <div className="over-50k"></div>
         </div>

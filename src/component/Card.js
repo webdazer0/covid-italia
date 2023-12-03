@@ -1,9 +1,8 @@
 import React from "react";
+import { PersonIcon } from "./icons/icons";
+import { IMAGE_API, IMAGE_FALLBACK } from "../config/constants";
 import { format } from "timeago.js";
 import "../utils/addLang"; // Aggiunge lingue a timeago.js: Italiano & Spagnolo
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserTimes } from "@fortawesome/free-solid-svg-icons";
-import { IMAGE_API, IMAGE_FALLBACK } from "../config/constants";
 
 function Card({
   countryregion,
@@ -14,60 +13,85 @@ function Card({
   lastupdate,
   countrycode,
 }) {
+  const getUrgency = (num) => {
+    if (num > 50000) return "high";
+    if (num > 5000) return "medium";
+    return "low";
+  };
+
   const urlFlag = countrycode
     ? `${IMAGE_API}/${countrycode.iso2.toLowerCase()}.svg`
     : IMAGE_FALLBACK;
-  const codice =
-    deaths > 50000 ? "urgency" : deaths > 5000 ? "dangermax" : "notnormal";
+
+  const codice = getUrgency(deaths);
 
   return (
-    <div className="col-md-6 col-lg-4 mt-5 text-center">
-      <div className={`card ${codice}`}>
-        <div className="card-header">
-          <div className="card-title">
-            <img
-              loading="lazy"
-              className="img-fluid"
-              src={urlFlag}
-              alt={countryregion}
-              title={countryregion}
-              height="15px"
-            />
-            <h4 className="h6 mb-0">{countryregion}</h4>
-          </div>
+    <CardContainer urgency={codice}>
+      <div className="card-header">
+        <div className="card-title">
+          <img
+            loading="lazy"
+            className="img-fluid"
+            src={urlFlag}
+            alt={countryregion}
+            title={countryregion}
+            height="15px"
+          />
+          <h4 className="h6 mb-0">{countryregion}</h4>
+        </div>
 
-          <div className="d-flex justify-content-center align-items-center flex-grow-1">
-            {provincestate ? (
-              <span className="badge badge-pill badge-danger mt-3">
-                {provincestate}
-              </span>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-        <div className="card-body">
-          <p className="lead mb-2">
-            <span className="text-danger h5">
-              <FontAwesomeIcon icon={faUserTimes} /> {deaths}
-            </span>
-            <small className="text-danger h6 d-block">morti</small>
-          </p>
-          <p className="lead mb-1">
-            <span className="text-warning h1">{confirmed}</span>
-            <small className="text-warning h6 d-block">casi confermati</small>
-          </p>
-          <p className="lead mb-0">
-            <span className="text-success h6 ">{recovered}</span>
-            <small className="text-success h6 d-block">ricoverati</small>
-          </p>
-        </div>
-        <div className="card-footer">
-          <small>aggiornato: {format(lastupdate, "it")}</small>
+        <div className="d-flex justify-content-center align-items-center flex-grow-1">
+          {provincestate ? <Badge>{provincestate}</Badge> : <></>}
         </div>
       </div>
-    </div>
+      <div className="card-body">
+        <Tile type="danger" title={deaths} content="morti" Icon={PersonIcon} />
+        <Tile
+          type="warning"
+          title={confirmed}
+          content="casi confermati"
+          max={true}
+        />
+        <Tile type="success" title={recovered} content="ricoverati" />
+      </div>
+      <div className="card-footer">
+        <small>aggiornato: {format(lastupdate, "it")}</small>
+      </div>
+    </CardContainer>
   );
 }
 
 export default Card;
+
+const CardContainer = ({ children, className, urgency }) => {
+  return (
+    <div className="col-md-6 col-lg-4 mt-5 text-center">
+      <div className={`card urgency-${urgency}`}>{children}</div>
+    </div>
+  );
+};
+
+const Badge = ({ children, className }) => {
+  return (
+    <span className={`badge badge-pill badge-danger mt-3 ${className}`}>
+      {children}
+    </span>
+  );
+};
+
+const Tile = ({ content, type, title, max, Icon }) => {
+  const status = type ?? "success";
+  const spanClass = `text-${status}`;
+  const spacing = Icon ? " " : "";
+
+  return (
+    <p className="lead mb-2">
+      <span className={`${spanClass} ${max ? "h1" : "h6"}`}>
+        {Icon ? <Icon /> : ""}
+        {spacing}
+        {title}
+      </span>
+      <small className={`${spanClass} h6 d-block`}>{content}</small>
+    </p>
+  );
+};
