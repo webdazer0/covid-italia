@@ -1,8 +1,7 @@
 import React from "react";
 import { PersonIcon } from "./icons/icons";
 import { IMAGE_API, IMAGE_FALLBACK } from "../config/constants";
-import { format } from "timeago.js";
-import { UtilsNumber } from "../utils";
+import { UtilsNumber, UtilsDate } from "../utils";
 
 function Card({
   countryregion,
@@ -55,7 +54,7 @@ function Card({
         <Tile type="success" title={recovered} content="ricoverati" />
       </div>
       <div className="card-footer">
-        <small>aggiornato: {format(lastupdate, "it")}</small>
+        <small>aggiornato: {UtilsDate.format(lastupdate)}</small>
       </div>
     </CardContainer>
   );
