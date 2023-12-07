@@ -2,7 +2,7 @@ import React from "react";
 import { PersonIcon } from "./icons/icons";
 import { IMAGE_API, IMAGE_FALLBACK } from "../config/constants";
 import { format } from "timeago.js";
-import "../utils/addLang"; // Aggiunge lingue a timeago.js: Italiano & Spagnolo
+import { UtilsNumber } from "../utils";
 
 function Card({
   countryregion,
@@ -84,12 +84,14 @@ const Tile = ({ content, type, title, max, Icon }) => {
   const spanClass = `text-${status}`;
   const spacing = Icon ? " " : "";
 
+  const formatTitle = UtilsNumber.format(title);
+
   return (
     <p className="lead mb-2">
-      <span className={`${spanClass} ${max ? "h1" : "h6"}`}>
+      <span className={`${spanClass} ${max ? "h3" : "h6"}`}>
         {Icon ? <Icon /> : ""}
         {spacing}
-        {title}
+        {formatTitle}
       </span>
       <small className={`${spanClass} h6 d-block`}>{content}</small>
     </p>

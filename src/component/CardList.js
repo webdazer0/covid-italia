@@ -22,7 +22,7 @@ function CardList() {
       (elem) => elem.countrycode.iso3 === byName
     );
     logger({ byName });
-    logger({ countryListByName });
+
     getCountry = countryListByName.map((elem) => {
       return <Card key={elem.countryregion + elem.provincestate} {...elem} />;
     });

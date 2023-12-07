@@ -9,6 +9,7 @@ import Sidebar from "./component/Sidebar";
 import Main from "./component/Main";
 import useApp from "./hooks/useApp";
 import AppLayout from "./component/AppLayout";
+import "./utils/addLang"; // Aggiunge lingue a timeago.js: Italiano & Spagnolo
 
 function App() {
   // Load initial data
