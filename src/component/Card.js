@@ -1,6 +1,6 @@
 import React from "react";
 import { PersonIcon } from "./icons/icons";
-import { IMAGE_API, IMAGE_FALLBACK } from "../config/constants";
+import { IMAGE_API, IMAGE_FALLBACK } from "../settings";
 import { UtilsNumber, UtilsDate } from "../utils";
 
 function Card({

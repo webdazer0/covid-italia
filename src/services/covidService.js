@@ -1,4 +1,4 @@
-import { COVID_API } from "../config/constants";
+import { COVID_API } from "../settings";
 import { logger } from "../utils/logger";
 import { fakeList } from "./fakeData";
 
