@@ -1,4 +1,3 @@
-import React from "react";
 import { PersonIcon } from "./icons/icons";
 import { IMAGE_API, IMAGE_FALLBACK } from "../settings";
 import { UtilsNumber, UtilsDate } from "../utils";
@@ -63,19 +62,19 @@ function Card({
 export default Card;
 
 const CardContainer = ({ children, className, urgency }) => {
-  return (
-    <div className="col-md-6 col-lg-4 mt-5 text-center">
+  const mainClass = `col-md-6 col-lg-4 mt-5 text-center ${className}`;
+
+return (
+    <div className={mainClass}>
       <div className={`card urgency-${urgency}`}>{children}</div>
     </div>
   );
 };
 
 const Badge = ({ children, className }) => {
-  return (
-    <span className={`badge badge-pill badge-danger mt-3 ${className}`}>
-      {children}
-    </span>
-  );
+  const mainClass = `badge badge-pill badge-danger mt-3 ${className}`;
+  
+  return <span className={mainClass}>{children}</span>;
 };
 
 const Tile = ({ content, type, title, max, Icon }) => {

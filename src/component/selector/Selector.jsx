@@ -1,6 +1,6 @@
 import React from "react";
 import "./selector.css";
-import useCountries from "../hooks/useCountries";
+import useCountries from "../../hooks/useCountries";
 
 function Selector() {
   const { countryListByISO, onISOChanged } = useCountries();

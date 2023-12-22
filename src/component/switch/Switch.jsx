@@ -1,6 +1,6 @@
 import React from "react";
 import "./switch.css";
-import useDarkMode from "../hooks/useDarkMode";
+import useDarkMode from "../../hooks/useDarkMode";
 
 function Switch() {
   const { darkTheme, onChangeTheme } = useDarkMode();

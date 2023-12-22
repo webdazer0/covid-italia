@@ -1,6 +1,6 @@
 import React from "react";
 
-const Main = ({ children, col }) => {
+const Content = ({ children, col }) => {
   const classColumn = `col-md-${col}`;
   return (
     <div className={classColumn}>
@@ -9,4 +9,4 @@ const Main = ({ children, col }) => {
   );
 };
 
-export default Main;
+export default Content;
