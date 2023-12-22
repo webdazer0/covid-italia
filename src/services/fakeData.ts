@@ -1,4 +1,6 @@
-export const fakeList = [
+import { CountryDataApi } from "./covidService";
+
+export const fakeList: CountryDataApi[] = [
   {
     countryregion: "Argentina",
     lastupdate: "2021-05-08T21:00:27.370Z",
